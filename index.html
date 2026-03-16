@@ -292,6 +292,104 @@
       letter-spacing: .04em;
     }
 
+    /* ─── Works / Projects ─── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .work-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px 20px;
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .work-card::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      opacity: 0;
+      background: radial-gradient(circle at top left, rgba(124,106,240,.28), transparent 55%);
+      transition: opacity var(--transition);
+      pointer-events: none;
+    }
+    .work-card:hover {
+      border-color: rgba(255,255,255,.18);
+      background: #151521;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(0,0,0,.55);
+    }
+    .work-card:hover::before {
+      opacity: 1;
+    }
+
+    .work-title {
+      position: relative;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .work-desc {
+      position: relative;
+      font-size: .9rem;
+      line-height: 1.7;
+      color: #b0b0c4;
+      margin-bottom: 14px;
+    }
+
+    .tag-row {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .tag-chip {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.45);
+      color: var(--muted);
+      background: rgba(15,23,42,.8);
+      backdrop-filter: blur(6px);
+    }
+
+    .work-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: .9;
+      transition: color var(--transition), transform var(--transition), opacity var(--transition);
+    }
+    .work-link span {
+      transition: transform var(--transition);
+    }
+    .work-link:hover {
+      color: var(--accent2);
+      opacity: 1;
+      transform: translateX(1px);
+    }
+    .work-link:hover span {
+      transform: translateX(3px);
+    }
+
     /* ─── Footer ─── */
     footer {
       border-top: 1px solid var(--border);
@@ -441,6 +539,28 @@
           <span class="skill-name">AWS</span>
           <span class="skill-level">Intermediate</span>
         </div>
+      </div>
+    </section>
+
+    <!-- ── Works ── -->
+    <section>
+      <p class="section-label">作ったもの</p>
+      <div class="work-grid">
+        <article class="work-card">
+          <h2 class="work-title">Focus BGM</h2>
+          <p class="work-desc">
+            集中BGM × タスク管理アプリ。やることを入力してカテゴリを選ぶだけで
+            最適なBGMを提案し、ポモドーロタイマーで集中をサポートします。
+          </p>
+          <div class="tag-row">
+            <span class="tag-chip">Next.js</span>
+            <span class="tag-chip">Tailwind CSS</span>
+            <span class="tag-chip">TypeScript</span>
+          </div>
+          <a class="work-link" href="#" target="_blank" rel="noreferrer">
+            <span>見てみる →</span>
+          </a>
+        </article>
       </div>
     </section>
 
