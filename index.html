@@ -539,29 +539,58 @@
           <span class="skill-name">AWS</span>
           <span class="skill-level">Intermediate</span>
         </div>
+        <div class="skill-card">
+          <span class="skill-dot" style="background:#3ecf8e;box-shadow:0 0 8px #3ecf8e66;"></span>
+          <span class="skill-name">Supabase</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-dot" style="background:#ea4335;box-shadow:0 0 8px #ea433566;"></span>
+          <span class="skill-name">Google OAuth</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
       </div>
     </section>
 
     <!-- ── Works ── -->
     <section>
       <p class="section-label">作ったもの</p>
-      <div class="work-grid">
-        <article class="work-card">
-          <h2 class="work-title">Focus BGM</h2>
-          <p class="work-desc">
-            集中BGM × タスク管理アプリ。やることを入力してカテゴリを選ぶだけで
-            最適なBGMを提案し、ポモドーロタイマーで集中をサポートします。
-          </p>
-          <div class="tag-row">
-            <span class="tag-chip">Next.js</span>
-            <span class="tag-chip">Tailwind CSS</span>
-            <span class="tag-chip">TypeScript</span>
-          </div>
-          <a class="work-link" href="https://focus-bgm-app.vercel.app/" target="_blank" rel="noreferrer">
-            <span>見てみる →</span>
-          </a>
-        </article>
-      </div>
+      <div class="work-grid" id="workGrid"></div>
+      <noscript>
+        <div class="work-grid" style="margin-top:16px;">
+          <article class="work-card">
+            <h2 class="work-title">習慣トラッカー</h2>
+            <p class="work-desc">
+              習慣トラッカーアプリをフルスタックで開発・リリース。Google認証・DB設計・本番デプロイまで一人で実装。
+            </p>
+            <div class="tag-row">
+              <span class="tag-chip">Next.js</span>
+              <span class="tag-chip">TypeScript</span>
+              <span class="tag-chip">Tailwind CSS</span>
+              <span class="tag-chip">Supabase</span>
+              <span class="tag-chip">Google OAuth</span>
+            </div>
+            <a class="work-link" href="https://habit-tracker-inky-tau.vercel.app/" target="_blank" rel="noreferrer">
+              <span>見てみる →</span>
+            </a>
+          </article>
+          <article class="work-card">
+            <h2 class="work-title">Focus BGM</h2>
+            <p class="work-desc">
+              集中BGM × タスク管理アプリ。やることを入力してカテゴリを選ぶだけで
+              最適なBGMを提案し、ポモドーロタイマーで集中をサポートします。
+            </p>
+            <div class="tag-row">
+              <span class="tag-chip">Next.js</span>
+              <span class="tag-chip">Tailwind CSS</span>
+              <span class="tag-chip">TypeScript</span>
+            </div>
+            <a class="work-link" href="https://focus-bgm-app.vercel.app/" target="_blank" rel="noreferrer">
+              <span>見てみる →</span>
+            </a>
+          </article>
+        </div>
+      </noscript>
     </section>
 
     <!-- ── Footer ── -->
@@ -571,5 +600,68 @@
     </footer>
 
   </div>
+
+  <script>
+    const apps = [
+      {
+        name: "習慣トラッカー",
+        description:
+          "習慣トラッカーアプリをフルスタックで開発・リリース。Google認証・DB設計・本番デプロイまで一人で実装。",
+        url: "https://habit-tracker-inky-tau.vercel.app/",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Google OAuth"],
+      },
+      {
+        name: "Focus BGM",
+        description:
+          "集中BGM × タスク管理アプリ。やることを入力してカテゴリを選ぶだけで最適なBGMを提案し、ポモドーロタイマーで集中をサポート。",
+        url: "https://focus-bgm-app.vercel.app/",
+        tags: ["Next.js", "Tailwind CSS", "TypeScript"],
+      },
+    ];
+
+    function createWorkCard(app) {
+      const article = document.createElement("article");
+      article.className = "work-card";
+
+      const title = document.createElement("h2");
+      title.className = "work-title";
+      title.textContent = app.name;
+
+      const desc = document.createElement("p");
+      desc.className = "work-desc";
+      desc.textContent = app.description;
+
+      const tagRow = document.createElement("div");
+      tagRow.className = "tag-row";
+      for (const tag of app.tags || []) {
+        const chip = document.createElement("span");
+        chip.className = "tag-chip";
+        chip.textContent = tag;
+        tagRow.appendChild(chip);
+      }
+
+      const link = document.createElement("a");
+      link.className = "work-link";
+      link.href = app.url;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      const linkText = document.createElement("span");
+      linkText.textContent = "見てみる →";
+      link.appendChild(linkText);
+
+      article.appendChild(title);
+      article.appendChild(desc);
+      article.appendChild(tagRow);
+      article.appendChild(link);
+
+      return article;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const workGrid = document.getElementById("workGrid");
+      if (!workGrid) return;
+      workGrid.replaceChildren(...apps.map(createWorkCard));
+    });
+  </script>
 </body>
 </html>
