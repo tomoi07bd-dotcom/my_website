@@ -555,6 +555,16 @@
           <span class="skill-level">Intermediate</span>
         </div>
         <div class="skill-card">
+          <span class="skill-dot" style="background:#3ecf8e;box-shadow:0 0 8px #3ecf8e66;"></span>
+          <span class="skill-name">Supabase Storage</span>
+          <span class="skill-level">Beginner</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-dot" style="background:#6366f1;box-shadow:0 0 8px #6366f166;"></span>
+          <span class="skill-name">PWA</span>
+          <span class="skill-level">Beginner</span>
+        </div>
+        <div class="skill-card">
           <span class="skill-dot" style="background:#ea4335;box-shadow:0 0 8px #ea433566;"></span>
           <span class="skill-name">Google OAuth</span>
           <span class="skill-level">Intermediate</span>
@@ -615,6 +625,20 @@
               <span>見てみる →</span>
             </a>
           </article>
+          <article class="work-card">
+            <h2 class="work-title">野菜の見分け方図鑑</h2>
+            <p class="work-desc">
+              Claude APIで野菜情報を自動生成し、Supabaseで管理するモバイルファーストの野菜図鑑アプリ。パスワード認証・PWA対応・月別コンテンツ自動切り替えまで一人で実装。
+            </p>
+            <div class="tag-row">
+              <span class="tag-chip">Next.js</span>
+              <span class="tag-chip">TypeScript</span>
+              <span class="tag-chip">Supabase</span>
+              <span class="tag-chip">Claude API</span>
+              <span class="tag-chip">PWA</span>
+            </div>
+            <span class="work-link" style="color:var(--muted);cursor:default;pointer-events:none;">URL: TODO（後ほど追加）</span>
+          </article>
         </div>
       </noscript>
     </section>
@@ -650,6 +674,13 @@
         url: "https://menu-planner-tau.vercel.app",
         tags: ["Next.js", "TypeScript", "Tailwind CSS", "Claude API", "Vercel"],
       },
+      {
+        name: "野菜の見分け方図鑑",
+        description:
+          "Claude APIで野菜情報を自動生成し、Supabaseで管理するモバイルファーストの野菜図鑑アプリ。パスワード認証・PWA対応・月別コンテンツ自動切り替えまで一人で実装。",
+        url: "https://yasai-guide.vercel.app/",
+        tags: ["Next.js", "TypeScript", "Supabase", "Claude API", "PWA"],
+      },
     ];
 
     function createWorkCard(app) {
@@ -673,19 +704,29 @@
         tagRow.appendChild(chip);
       }
 
-      const link = document.createElement("a");
-      link.className = "work-link";
-      link.href = app.url;
-      link.target = "_blank";
-      link.rel = "noreferrer";
-      const linkText = document.createElement("span");
-      linkText.textContent = "見てみる →";
-      link.appendChild(linkText);
-
       article.appendChild(title);
       article.appendChild(desc);
       article.appendChild(tagRow);
-      article.appendChild(link);
+
+      if (app.url === "TODO") {
+        const pending = document.createElement("span");
+        pending.className = "work-link";
+        pending.style.color = "var(--muted)";
+        pending.style.cursor = "default";
+        pending.style.pointerEvents = "none";
+        pending.textContent = "URL: TODO（後ほど追加）";
+        article.appendChild(pending);
+      } else {
+        const link = document.createElement("a");
+        link.className = "work-link";
+        link.href = app.url;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        const linkText = document.createElement("span");
+        linkText.textContent = "見てみる →";
+        link.appendChild(linkText);
+        article.appendChild(link);
+      }
 
       return article;
     }
